@@ -1,0 +1,6 @@
+# Never commit private keys or credentials
+*.pem
+*.key
+*.ppk
+.env
+credentials
