@@ -1,0 +1,22 @@
+# Copy to ~/.ssh/config and replace BASTION_PUBLIC_IP.
+# The private key (ewb-lab.pem) stays on your laptop and is NOT part of this repo.
+
+Host ewb-bastion
+    HostName BASTION_PUBLIC_IP
+    User ec2-user
+    IdentityFile ~/.ssh/ewb-lab.pem
+    IdentitiesOnly yes
+
+Host ewb-app-a
+    HostName 10.10.2.39        # workbook default is 10.10.2.10; AWS assigned .39 in this run
+    User ec2-user
+    IdentityFile ~/.ssh/ewb-lab.pem
+    IdentitiesOnly yes
+    ProxyJump ewb-bastion
+
+Host ewb-app-b
+    HostName 10.20.1.10
+    User ec2-user
+    IdentityFile ~/.ssh/ewb-lab.pem
+    IdentitiesOnly yes
+    ProxyJump ewb-bastion
